@@ -1,7 +1,6 @@
 project "GLFW"
 	kind "StaticLib"
 	language "C"
-	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -21,6 +20,7 @@ project "GLFW"
 
 	filter "system:windows"
 		systemversion "latest"
+		staticruntime "On"
 
 		files
 		{
@@ -42,11 +42,6 @@ project "GLFW"
 			"_CRT_SECURE_NO_WARNINGS"
 		}
 
-		links
-		{
-			"Dwmapi.lib"
-		}
-
 	filter "configurations:Debug"
 		runtime "Debug"
 		symbols "on"
@@ -55,7 +50,7 @@ project "GLFW"
 		runtime "Release"
 		optimize "on"
 
-	filter "configurations:Dist"
-		runtime "Release"
-		optimize "on"
-        symbols "off"
+	--filter "configurations:Dist"
+	--	runtime "Release"
+	--	optimize "on"
+    --  symbols "off"
